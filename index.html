@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Odin - Rock paper scissors</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+    <script defer src="js/main.js"></script>
+  </head>
+
+  <body>
+    <header id="banner">
+      <h1>
+        Rock paper scissors
+      </h1>
+    </header>
+
+    <main>
+      <section id="score-board">
+        <header id="score-message">
+          <h2>Choose your weapon</h2>
+          <h3>First to score 5 points wins the game</h3>
+        </header>
+
+        <div class="score-group">
+          <div class="score-card">
+            <div id="player-icon">
+              ❔
+            </div>
+            <p>
+              Player: <span id="player-score"> 0 </span>
+            </p>
+          </div>
+
+          <div class="score-card">
+            <div id="bot-icon">
+              ❔
+            </div>
+            <p>
+              Bot: <span id="bot-score"> 0 </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="buttons">
+        <button>✊</button>
+        <button>✋</button>
+        <button>✌</button>
+      </section>
+    </main>
+
+    <footer>
+      <p> 
+        Copyright © The Odin Project 2022 & Julien Pinson
+      </p>
+    </footer>
+
+  </body>
+</html>
