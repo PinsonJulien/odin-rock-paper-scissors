@@ -1,7 +1,27 @@
 import Header from "./header.js";
 import Player from "./player.js";
 import PlayerCard from "./player-card.js";
-import { capitalize } from "./utils.js";
+import { capitalize, getRandomArrayItem } from "./utils.js";
+
+const moves = [
+  {
+    name: 'rock',
+    icon: '✊',
+    beats: 'scissors'
+  },
+  {
+    name: 'paper',
+    icon: '✋',
+    beats: 'rock'
+  }, 
+  {
+    name: 'scissors',
+    icon: '✌',
+    beats: 'paper'
+  }
+];
+
+const unknownMoveIcon = '❔';
 
 /* Setup of all dynamic elements */
 const header = new Header("score-message");
@@ -12,22 +32,21 @@ const humanPlayerCard = new PlayerCard("human-score");
 const botPlayerCard = new PlayerCard("bot-score");
 
 /* Setup of move buttons */
-const buttonList = document.getElementById("buttons");
-const rockButton = document.createElement("button");
-rockButton.append(getMoveIcon('rock'));
-rockButton.addEventListener("click", () => playerMove('rock'));
-const paperButton = document.createElement("button");
-paperButton.append(getMoveIcon('paper'));
-paperButton.addEventListener("click", () => playerMove('paper'));
-
-const scissorsButton = document.createElement("button");
-scissorsButton.append(getMoveIcon('scissors'));
-scissorsButton.addEventListener("click", () => playerMove('scissors'));
-
-buttonList.append(rockButton, paperButton, scissorsButton);
+generateMovementButtons(moves);
 
 /* Set default values */
 reset();
+
+function generateMovementButtons() {
+  const buttonList = document.getElementById("buttons");
+  moves.forEach(move => {
+    const btn = document.createElement("button");
+    btn.append(move.icon);
+    btn.addEventListener("click", () => playerMove(move));
+
+    buttonList.append(btn);
+  });
+}
 
 function reset() {
   const defaultScore = 0;
@@ -37,32 +56,26 @@ function reset() {
   botPlayer.setScore(defaultScore);
 
   /* reset cards */
-  humanPlayerCard.setIcon(getMoveIcon());
-  botPlayerCard.setIcon(getMoveIcon());
+  humanPlayerCard.setIcon(unknownMoveIcon);
+  botPlayerCard.setIcon(unknownMoveIcon);
 
   humanPlayerCard.setScore(defaultScore);
   botPlayerCard.setScore(defaultScore);
 }
 
 function playerMove(move) {
-  const botMove = getBotMove();
+  const botMove = getRandomArrayItem(moves);
 
   let middleText = "";
   /* if the bot wins*/
-  if (
-    (move === 'rock' && botMove === 'paper')
-    ||
-    (move === 'paper' && botMove === 'scissors')
-    ||
-    (move === 'scissors' && botMove === 'rock')
-  ) {
+  if (isMoveBeaten(move, botMove)) {
     header.setTopMessage("You lost!");
     middleText = "is beaten by";
     botPlayer.score += 1;
   }
 
   /* if ties */
-  else if (move === botMove) {
+  else if (move.name === botMove.name) {
     header.setTopMessage("It's a tie!");
     middleText = "ties with";
   }
@@ -74,30 +87,15 @@ function playerMove(move) {
     humanPlayer.score += 1;
   }
 
-  header.setBottomMessage(`${capitalize(move)} ${middleText} ${botMove}`);
+  header.setBottomMessage(`${capitalize(move.name)} ${middleText} ${botMove.name}`);
   
-  humanPlayerCard.setIcon(getMoveIcon(move));
+  humanPlayerCard.setIcon(move.icon);
   humanPlayerCard.setScore(humanPlayer.score);
 
-  botPlayerCard.setIcon(getMoveIcon(move));
+  botPlayerCard.setIcon(botMove.icon);
   botPlayerCard.setScore(botPlayer.score);
 }
 
-function getBotMove() {
-  const move = Math.floor(Math.random() * 2);
-  switch(move) {
-    case 0: return 'rock';
-    case 1: return 'paper';
-    case 2: return 'scissors';
-  }
+function isMoveBeaten (moveOne, moveTwo) {
+  return moveOne.name === moveTwo.beats;
 }
-
-function getMoveIcon(move) {
-  switch(move) {
-    case 'rock': return '✊';
-    case 'paper': return '✋';
-    case 'scissors': return '✌';
-    default: return '❔';
-  }
-}
-
