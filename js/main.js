@@ -27,7 +27,10 @@ const moves = [
 
 const unknownMoveIcon = '❔';
 
-/* Setup of all dynamic elements */
+// Set current year in the footer
+document.getElementById("current-year").textContent = new Date().getFullYear();
+
+// Setup of all dynamic elements
 const header = new Header("score-message");
 const humanPlayer = new Player();
 const botPlayer = new Player();
@@ -38,10 +41,10 @@ const botPlayerCard = new PlayerCard("bot-score");
 const modal = new Modal("modal");
 modal.button.addEventListener("click", () => reset());
 
-/* Setup of move buttons */
+// Setup of move buttons
 generateMovementButtons(moves);
 
-/* Set default values */
+// Set default values
 reset();
 
 function generateMovementButtons() {
@@ -56,22 +59,22 @@ function generateMovementButtons() {
 }
 
 function reset() {
-  /* reset header */
+  // reset header
   header.setTopMessage("Choose your weapon!")
   header.setBottomMessage("First to score 5 points wins the game");
   
-  /* reset score */
+  // reset score
   humanPlayer.setScore(defaultScore);
   botPlayer.setScore(defaultScore);
 
-  /* reset cards */
+  // reset cards
   humanPlayerCard.setIcon(unknownMoveIcon);
   botPlayerCard.setIcon(unknownMoveIcon);
 
   humanPlayerCard.setScore(defaultScore);
   botPlayerCard.setScore(defaultScore);
 
-  /* Hide modal */
+  // Hide modal
   modal.removeClass("visible");
 }
 
@@ -79,20 +82,20 @@ function playerMove(move) {
   const botMove = getRandomArrayItem(moves);
 
   let middleText = "";
-  /* if the bot wins*/
+  // if the bot wins
   if (isMoveBeaten(move, botMove)) {
     header.setTopMessage("You lost!");
     middleText = "is beaten by";
     botPlayer.score += 1;
   }
 
-  /* if ties */
+  // if ties
   else if (move.name === botMove.name) {
     header.setTopMessage("It's a tie!");
     middleText = "ties with";
   }
 
-  /* if won */
+  // if won
   else {
     header.setTopMessage("You won!")
     middleText = "beats";

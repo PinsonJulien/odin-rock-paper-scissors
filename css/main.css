@@ -20,6 +20,8 @@ body {
   margin: 0;
   text-align: center;
   font-size: 50px;
+  text-transform: uppercase;
+  font-weight: 300;
 }
 
 /********/
@@ -144,10 +146,6 @@ footer {
 
 #modal button:hover {
   background-color: #bfbdbd;
-}
-
-.hidden {
-  display: none;
 }
 
 .visible {
