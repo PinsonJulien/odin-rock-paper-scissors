@@ -1,4 +1,4 @@
-import Element from "/js/element.js";
+import Element from "../js/element.js";
 
 export default class PlayerCard extends Element {
   icon;
