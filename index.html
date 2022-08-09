@@ -4,7 +4,7 @@
     <title>Odin - Rock paper scissors</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="css/main.css">
-    <script defer src="js/main.js"></script>
+    <script defer type="module" src="js/main.js"></script>
   </head>
 
   <body>
@@ -21,31 +21,24 @@
           <h3>First to score 5 points wins the game</h3>
         </header>
 
-        <div class="score-group">
+        <div class="score-group" id="human-score">
           <div class="score-card">
-            <div id="player-icon">
-              ❔
-            </div>
+            <div class="player-icon"></div>
             <p>
-              Player: <span id="player-score"> 0 </span>
+              Player: <span class="player-score"></span>
             </p>
           </div>
 
-          <div class="score-card">
-            <div id="bot-icon">
-              ❔
-            </div>
+          <div class="score-card" id="bot-score">
+            <div class="player-icon"></div>
             <p>
-              Bot: <span id="bot-score"> 0 </span>
+              Bot: <span class="player-score"></span>
             </p>
           </div>
         </div>
       </section>
 
       <section id="buttons">
-        <button>✊</button>
-        <button>✋</button>
-        <button>✌</button>
       </section>
     </main>
 
