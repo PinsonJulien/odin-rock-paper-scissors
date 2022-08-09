@@ -1,0 +1,100 @@
+body {
+  font-family: Roboto;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #111111;
+  color: #E2E2E2;
+}
+
+/**********/
+/* Banner */
+/**********/
+#banner {
+  background-color: #1F1F1F;
+  padding: 2em;
+}
+
+#banner h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 50px;
+}
+
+/********/
+/* MAIN */
+/********/
+
+main {
+  margin: auto 0 auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+}
+
+#score-board {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+/* Score message */
+#score-message {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+#score-message > * {
+  text-align: center;
+  margin: 0;
+}
+
+/* score group */
+
+.score-group {
+  display: flex;
+  justify-content: center;
+  gap: 5em;
+  text-align: center;
+}
+
+.score-card .player-icon {
+  font-size: 60px;
+}
+
+.score-card p {
+  font-size: 20px;
+}
+
+/* buttons */
+
+#buttons {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+}
+
+#buttons button {
+  padding: 1em;
+  font-size: 2em;
+  background-color: #1E1E1E;
+  border-style: none;
+}
+
+#buttons button:hover {
+  cursor: pointer;
+  background-color: #1F1F1F;
+}
+
+/**********/
+/* FOOTER */
+/**********/
+
+footer {
+  background-color: #1F1F1F;
+  padding: 2em;
+  margin-top: auto;
+  text-align: center;
+}
