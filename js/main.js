@@ -56,7 +56,9 @@ function generateMovementButtons() {
 }
 
 function reset() {
-  
+  /* reset header */
+  header.setTopMessage("Choose your weapon!")
+  header.setBottomMessage("First to score 5 points wins the game");
   
   /* reset score */
   humanPlayer.setScore(defaultScore);
