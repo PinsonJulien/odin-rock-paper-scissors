@@ -1,8 +1,8 @@
-import Header from "./header.js";
-import Player from "./player.js";
-import PlayerCard from "./player-card.js";
-import Modal from "./modal.js";
-import { capitalize, getRandomArrayItem } from "./utils.js";
+import Header from "/js/header.js";
+import Player from "/js/player.js";
+import PlayerCard from "/js/player-card.js";
+import Modal from "/js/modal.js";
+import { capitalize, getRandomArrayItem } from "/js/utils.js";
 
 const defaultScore = 0;
 const maxScore = 5;

@@ -1,11 +1,13 @@
-export default class PlayerCard {
+import Element from "/js/element.js";
+
+export default class PlayerCard extends Element {
   icon;
   score;
 
   constructor(id) {
-    const element = document.getElementById(id);
-    this.icon = element.getElementsByClassName("player-icon")[0];
-    this.score = element.getElementsByClassName("player-score")[0];
+    super(id);
+    this.icon = this.element.getElementsByClassName("player-icon")[0];
+    this.score = this.element.getElementsByClassName("player-score")[0];
   }
 
   setIcon (icon) {

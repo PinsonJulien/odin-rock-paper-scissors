@@ -1,10 +1,11 @@
-export default class Modal {
-  element;
+import Element from "/js/element.js";
+
+export default class Modal extends Element {
   text;
   button;
 
   constructor(id) {
-    this.element = document.getElementById(id);
+    super(id);
     this.text = this.element.getElementsByTagName("p")[0];
     this.button = this.element.getElementsByTagName("button")[0];
   }
