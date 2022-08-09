@@ -1,7 +1,11 @@
 import Header from "./header.js";
 import Player from "./player.js";
 import PlayerCard from "./player-card.js";
+import Modal from "./modal.js";
 import { capitalize, getRandomArrayItem } from "./utils.js";
+
+const defaultScore = 0;
+const maxScore = 5;
 
 const moves = [
   {
@@ -31,6 +35,9 @@ const botPlayer = new Player();
 const humanPlayerCard = new PlayerCard("human-score");
 const botPlayerCard = new PlayerCard("bot-score");
 
+const modal = new Modal("modal");
+modal.button.addEventListener("click", () => reset());
+
 /* Setup of move buttons */
 generateMovementButtons(moves);
 
@@ -49,7 +56,7 @@ function generateMovementButtons() {
 }
 
 function reset() {
-  const defaultScore = 0;
+  
   
   /* reset score */
   humanPlayer.setScore(defaultScore);
@@ -61,6 +68,9 @@ function reset() {
 
   humanPlayerCard.setScore(defaultScore);
   botPlayerCard.setScore(defaultScore);
+
+  /* Hide modal */
+  modal.removeClass("visible");
 }
 
 function playerMove(move) {
@@ -94,6 +104,20 @@ function playerMove(move) {
 
   botPlayerCard.setIcon(botMove.icon);
   botPlayerCard.setScore(botPlayer.score);
+
+  if (
+    humanPlayer.score === maxScore 
+    ||
+    botPlayer.score === maxScore 
+  ) {
+    modal.setText(
+      (humanPlayer.score > botPlayer.score)
+      ? "Congratulation, you won!"
+      : "Oops you lost! Try again!"
+    );
+
+    modal.addClass("visible");
+  }
 }
 
 function isMoveBeaten (moveOne, moveTwo) {
